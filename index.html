@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekap Shift ・ Otsu Cafe & Ramen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 10%, rgba(139, 0, 0, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 90%, rgba(212, 175, 55, 0.06) 0%, transparent 40%),
+                #FAF7F2;
+            padding: 20px;
+            color: #2C2C2C;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+            margin: 20px auto;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 32px 24px 28px;
+            box-shadow: 
+                0 1px 2px rgba(0,0,0,0.04),
+                0 10px 30px rgba(139, 0, 0, 0.1);
+            border: 1px solid #EFEAE0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8B0000 0%, #C41E3A 50%, #8B0000 100%);
+        }
+
+        /* ===== HEADER LOGO ===== */
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+            padding-bottom: 22px;
+            border-bottom: 1px dashed #E5E0D8;
+        }
+
+        .logo-wrap {
+            display: inline-block;
+            margin-bottom: 14px;
+            filter: drop-shadow(0 2px 4px rgba(139, 0, 0, 0.15));
+        }
+
+        .logo-wrap img {
+            width: 100px;
+            height: auto;
+            display: block;
+        }
+
+        .brand-name {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: #2C2C2C;
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
+        }
+
+        .brand-name .accent {
+            color: #8B0000;
+        }
+
+        .brand-sub {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 11px;
+            color: #8B7B6B;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #8B0000;
+            margin-top: 14px;
+            letter-spacing: 1px;
+        }
+
+        .title::before, .title::after {
+            content: '—';
+            color: #E5E0D8;
+            margin: 0 8px;
+            font-weight: 400;
+        }
+
+        /* ===== FORM ===== */
+        .form-group { margin-bottom: 18px; }
+
+        label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #6B5D4F;
+            margin-bottom: 8px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        label .jp {
+            font-family: 'Shippori Mincho', serif;
+            color: #8B0000;
+            margin-right: 6px;
+            font-weight: 800;
+            text-transform: none;
+            font-size: 15px;
+            vertical-align: middle;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #E5E0D8;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 600;
+            color: #2C2C2C;
+            background: #FDFBF7;
+            transition: all 0.25s ease;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8B0000;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.08);
+        }
+
+        input::placeholder {
+            color: #B8A99A;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .preview {
+            font-size: 11px;
+            color: #8B0000;
+            margin-top: 4px;
+            font-weight: 700;
+            min-height: 14px;
+            letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ===== BUTTON ===== */
+        button {
+            width: 100%;
+            padding: 16px;
+            margin-top: 22px;
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            color: #FFF8E7;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.25);
+            font-family: 'Inter', sans-serif;
+        }
+
+        button::before {
+            content: 'おつ ';
+            font-family: 'Shippori Mincho', serif;
+            font-size: 16px;
+            margin-right: 6px;
+            font-weight: 800;
+        }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 6px rgba(139, 0, 0, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px dashed #E5E0D8;
+            font-size: 10px;
+            color: #8B7B6B;
+            letter-spacing: 3px;
+            font-family: 'Shippori Mincho', serif;
+        }
+
+        .footer .seal {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #8B0000;
+            color: #FFF8E7;
+            border-radius: 3px;
+            line-height: 24px;
+            font-size: 12px;
+            margin-bottom: 6px;
+            font-weight: 800;
+            font-family: 'Shippori Mincho', serif;
+        }
+
+        /* ===== ANIMASI ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes stampIn {
+            0% { opacity: 0; transform: scale(1.3) rotate(-8deg); }
+            60% { transform: scale(0.95) rotate(2deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
+        }
+
+        .container { animation: fadeIn 0.5s ease; }
+        .logo-wrap { animation: stampIn 0.6s ease 0.1s both; }
+
+        @media (max-width: 360px) {
+            .container { padding: 24px 18px 22px; }
+            .brand-name { font-size: 19px; }
+            .logo-wrap img { width: 85px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <!-- LOGO JPG -->
+        <div class="logo-wrap">
+            <img src="logo.jpg" alt="Otsu Cafe Logo">
+        </div>
+
+        <div class="brand-name">Otsu <span class="accent">Cafe & Ramen</span></div>
+        <div class="brand-sub">Bululawang</div>
+        <div class="title">Rekap Pergantian Shift</div>
+    </div>
+
+    <form id="formRekap" onsubmit="event.preventDefault(); kirimWA();">
+        <div class="form-group">
+            <label><span class="jp">一</span>Modal Awal</label>
+            <input type="text" inputmode="numeric" class="angka" placeholder="Contoh: 50.000" required>
+            <div class="preview"></div>
+        </div>
+
+        <div class="form-group">
+            <label><span class="jp">二</span>Pendapatan Tunai</label>
+            <input type="text" inputmode="numeric" class="angka" placeholder="Contoh: 300.000" required>
+            <div class="preview"></div>
+        </div>
+
+        <div class="form-group">
+            <label><span class="jp">三</span>Pendapatan Non-Tunai (QRIS/Debit)</label>
+            <input type="text" inputmode="numeric" class="angka" placeholder="Contoh: 50.000" value="0">
+            <div class="preview"></div>
+        </div>
+
+        <div class="form-group">
+            <label><span class="jp">四</span>Total Pengeluaran</label>
+            <input type="text" inputmode="numeric" class="angka" placeholder="Contoh: 50.000" value="0">
+            <div class="preview"></div>
+        </div>
+
+        <div class="form-group">
+            <label><span class="jp">五</span>Catatan (Opsional)</label>
+            <input type="text" id="catatan" placeholder="Misal: Aman, laci sudah dihitung">
+        </div>
+
+        <button type="submit">Kirim ke WhatsApp</button>
+    </form>
+
+
+<script>
+    // ===== AUTO-FORMAT ANGKA =====
+    document.querySelectorAll('.angka').forEach(input => {
+        const preview = input.parentElement.querySelector('.preview');
+        
+        if (input.value && input.value !== '0') {
+            const num = parseInt(input.value.replace(/\D/g, '')) || 0;
+            input.value = new Intl.NumberFormat('id-ID').format(num);
+            preview.textContent = 'Rp ' + input.value;
+        }
+
+        input.addEventListener('input', function(e) {
+            let raw = e.target.value.replace(/\D/g, '');
+            if (raw === '') {
+                e.target.value = '';
+                preview.textContent = '';
+            } else {
+                const formatted = new Intl.NumberFormat('id-ID').format(raw);
+                e.target.value = formatted;
+                preview.textContent = 'Rp ' + formatted;
+            }
+        });
+    });
+
+    function formatRupiah(angka) { return new Intl.NumberFormat('id-ID').format(angka); }
+    function parseAngka(str) { return parseInt(str.toString().replace(/\./g, '')) || 0; }
+
+    // ===== LOGIKA SHIFT OTOMATIS (DISESUAIKAN JAM OTSU CAFE) =====
+    function getShiftName() {
+        const jam = new Date().getHours();
+        
+        // Shift Pagi: 09:30 - 16:00 (Terdeteksi dari jam 09:00 s/d 15:59)
+        // Shift Malam: 16:00 - 22:00 (Terdeteksi dari jam 16:00 ke atas)
+        if (jam >= 9 && jam < 16) {
+            return "PAGI ☀️";
+        } else {
+            return "MALAM 🌙";
+        }
+    }
+
+    function kirimWA() {
+        const inputs = document.querySelectorAll('.angka');
+        const modal = parseAngka(inputs[0].value);
+        const tunai = parseAngka(inputs[1].value);
+        const nonTunai = parseAngka(inputs[2].value);
+        const keluar = parseAngka(inputs[3].value);
+        const catatan = document.getElementById('catatan').value || "-";
+
+        const saldoAkhir = (modal + tunai) - keluar;
+        const totalOmzet = tunai + nonTunai;
+        const shift = getShiftName();
+        const tanggal = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        if (modal === 0 && tunai === 0) {
+            alert("Mohon isi Modal Awal dan Pendapatan Tunai!");
+            return;
+        }
+
+        let pesan = `🏮 *OTSU CAFE & RAMEN* 🏮\n\n`;
+        pesan += `━━━━━━━━━━━━━━━\n`;
+        pesan += ` *REKAP SHIFT ${shift}* \n`;
+        pesan += `🗓️ ${tanggal}\n\n`;
+        pesan += ` *ARUS KAS (Uang Fisik)*\n`;
+        pesan += `Modal Awal: Rp ${formatRupiah(modal)}\n`;
+        pesan += `(+) Pendapatan Tunai: Rp ${formatRupiah(tunai)}\n`;
+        pesan += `(-) Pengeluaran: Rp ${formatRupiah(keluar)}\n`;
+        pesan += `━━━━━━━━━━━━━━━\n`;
+        pesan += `= *SALDO AKHIR: Rp ${formatRupiah(saldoAkhir)}*\n\n`;
+        pesan += `📈 *INFO OMZET*\n`;
+        pesan += `Total: Rp ${formatRupiah(totalOmzet)}\n`;
+        pesan += `• Tunai: Rp ${formatRupiah(tunai)}\n`;
+        pesan += `• Non-Tunai: Rp ${formatRupiah(nonTunai)}\n\n`;
+        pesan += `📝 *Catatan:* ${catatan}`;
+
+        const urlWA = `https://wa.me/?text=${encodeURIComponent(pesan)}`;
+        window.open(urlWA, '_blank');
+        
+        setTimeout(() => {
+            inputs[0].value = ''; inputs[1].value = '';
+            inputs[2].value = '0'; inputs[3].value = '0';
+            document.getElementById('catatan').value = '';
+            document.querySelectorAll('.preview').forEach(p => p.textContent = '');
+        }, 500);
+    }
+</script>
+</body>
+</html>
